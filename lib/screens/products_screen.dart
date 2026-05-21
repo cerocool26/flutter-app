@@ -81,10 +81,29 @@ class _ProductCard extends StatelessWidget {
           child: const Icon(Icons.eco),
         ),
         title: Text(product.name, style: const TextStyle(fontWeight: FontWeight.w600)),
-        subtitle: Text(
-          (product.description ?? '').isEmpty ? 'Sin descripción' : product.description!,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
+        subtitle: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              (product.description ?? '').isEmpty ? 'Sin descripción' : product.description!,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 4),
+            Row(
+              children: [
+                Icon(Icons.person_outline, size: 13, color: Colors.grey.shade600),
+                const SizedBox(width: 4),
+                Expanded(
+                  child: Text(
+                    'Por: ${product.creator?.name ?? "—"}',
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey.shade700),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,

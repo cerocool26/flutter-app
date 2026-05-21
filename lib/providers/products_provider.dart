@@ -34,4 +34,23 @@ class ProductsProvider extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  /// Crea un producto y lo agrega al inicio de la lista (optimista).
+  /// Devuelve el producto creado, o lanza ProductException con el mensaje del backend.
+  Future<Product> create({
+    required String name,
+    required double price,
+    String? description,
+    int stock = 0,
+  }) async {
+    final created = await _service.create(
+      name: name,
+      price: price,
+      description: description,
+      stock: stock,
+    );
+    _products = [created, ..._products];
+    notifyListeners();
+    return created;
+  }
 }

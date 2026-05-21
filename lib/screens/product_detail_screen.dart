@@ -53,6 +53,17 @@ class ProductDetailScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: 24),
+            Row(
+              children: [
+                const Icon(Icons.person_outline, size: 16, color: Colors.grey),
+                const SizedBox(width: 6),
+                Text(
+                  'Creado por: ${product.creator?.name ?? "—"}',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.grey.shade800),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
             Text('ID: ${product.id}',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey)),
           ],

@@ -1,3 +1,15 @@
+class ProductCreator {
+  final String id;
+  final String name;
+  ProductCreator({required this.id, required this.name});
+
+  factory ProductCreator.fromJson(Map<String, dynamic> json) =>
+      ProductCreator(
+        id: json['id'].toString(),
+        name: (json['name'] ?? '').toString(),
+      );
+}
+
 class Product {
   final String id;
   final String name;
@@ -6,6 +18,7 @@ class Product {
   final int stock;
   final bool isActive;
   final DateTime? createdAt;
+  final ProductCreator? creator;
 
   Product({
     required this.id,
@@ -15,6 +28,7 @@ class Product {
     required this.stock,
     required this.isActive,
     this.createdAt,
+    this.creator,
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
@@ -30,6 +44,9 @@ class Product {
       stock: (json['stock'] is num) ? (json['stock'] as num).toInt() : 0,
       isActive: json['is_active'] ?? true,
       createdAt: json['created_at'] != null ? DateTime.tryParse(json['created_at']) : null,
+      creator: json['creator'] != null
+          ? ProductCreator.fromJson(Map<String, dynamic>.from(json['creator']))
+          : null,
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'providers/products_provider.dart';
 import 'providers/chat_provider.dart';
+import 'providers/user_stats_provider.dart';
 import 'screens/login_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -22,6 +23,15 @@ class EcoHomeApp extends StatelessWidget {
         ChangeNotifierProxyProvider<AuthProvider, ProductsProvider>(
           create: (_) => ProductsProvider(token: null),
           update: (_, auth, prev) => ProductsProvider(token: auth.token),
+        ),
+        ChangeNotifierProxyProvider<AuthProvider, UserStatsProvider>(
+          create: (_) => UserStatsProvider(token: null),
+          update: (_, auth, prev) {
+            if (prev == null || prev.token != auth.token) {
+              return UserStatsProvider(token: auth.token);
+            }
+            return prev;
+          },
         ),
         ChangeNotifierProxyProvider<AuthProvider, ChatProvider>(
           create: (_) => ChatProvider(token: null),

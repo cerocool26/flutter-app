@@ -47,6 +47,29 @@ class ProductService {
     throw ProductException(res.statusCode, _errorOf(res));
   }
 
+  /// POST /products  [admin]
+  Future<Product> create({
+    required String name,
+    required double price,
+    String? description,
+    int stock = 0,
+  }) async {
+    final res = await http.post(
+      Uri.parse('${ApiConfig.baseUrl}/products'),
+      headers: _headers,
+      body: jsonEncode({
+        'name': name,
+        'price': price,
+        'description': description,
+        'stock': stock,
+      }),
+    );
+    if (res.statusCode == 201) {
+      return Product.fromJson(jsonDecode(res.body));
+    }
+    throw ProductException(res.statusCode, _errorOf(res));
+  }
+
   String _errorOf(http.Response res) {
     try {
       final m = jsonDecode(res.body) as Map<String, dynamic>;
