@@ -3,8 +3,6 @@ import 'package:socket_io_client/socket_io_client.dart' as io;
 import '../config/api_config.dart';
 import '../models/message.dart';
 
-/// Wrapper sobre socket_io_client para el namespace /chat del backend.
-/// El handshake envía el JWT vía `auth: { token: ... }`.
 class ChatService {
   final String token;
   io.Socket? _socket;

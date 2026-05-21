@@ -9,7 +9,7 @@ class ApiConfig {
   ApiConfig._();
 
   static const String _port = '3000';
-  static const String _lanHost = '192.168.1.100'; // Cambiar si usas dispositivo físico
+  static const String _lanHost = 'localhost';
 
   static String get host {
     if (kIsWeb) return 'localhost';
