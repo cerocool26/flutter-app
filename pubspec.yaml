@@ -1,0 +1,35 @@
+name: ecohome_app
+description: Cliente móvil Flutter para EcoHome Store (auth + catálogo + chat)
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.6
+
+  # HTTP
+  http: ^1.2.1
+
+  # Almacenamiento seguro del JWT
+  flutter_secure_storage: ^9.2.2
+
+  # State management
+  provider: ^6.1.2
+
+  # Socket.IO client
+  socket_io_client: ^2.0.3+1
+
+  # Formato de fechas
+  intl: ^0.19.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
